@@ -1,8 +1,8 @@
 import requests, os, json, time, pandas as pd
 from datetime import datetime as dt
+from config import TOKEN
 
-#bearer_token = 'AAAAAAAAAAAAAAAAAAAAAMINawEAAAAAUhv%2BPsLsgvECBOlGK4MbOTcD4Xc%3DQ6tJRmkOfRxzA5aL4tZkYFewvcs2LIb1IbsoEZXhoaxhSchgpK'
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAAMINawEAAAAAUhv%2BPsLsgvECBOlGK4MbOTcD4Xc%3DQ6tJRmkOfRxzA5aL4tZkYFewvcs2LIb1IbsoEZXhoaxhSchgpK'
+bearer_token = TOKEN
 
 search_url = "https://api.twitter.com/2/tweets/search/all"
 counts_url = "https://api.twitter.com/2/tweets/counts/all"

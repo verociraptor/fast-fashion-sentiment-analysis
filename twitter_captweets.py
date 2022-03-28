@@ -1,4 +1,5 @@
 import csv
+from config import TOKEN
 import time, dateutil 
 from dateutil import parser
 import requests
@@ -97,7 +98,7 @@ def append_to_csv(json_response, fileName):
     # Print the number of tweets for this iteration
     print("# of Tweets added from this response: ", counter) 
 
-bearer_token = 'AAAAAAAAAAAAAAAAAAAAAMINawEAAAAAUhv%2BPsLsgvECBOlGK4MbOTcD4Xc%3DQ6tJRmkOfRxzA5aL4tZkYFewvcs2LIb1IbsoEZXhoaxhSchgpK'
+bearer_token = TOKEN
 headers = create_headers(bearer_token)
 keyword = "(@FashionNova -is:retweet) lang:en"
 start_list =    ['2022-01-01T00:00:00.000Z']
