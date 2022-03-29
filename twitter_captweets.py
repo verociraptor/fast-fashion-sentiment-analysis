@@ -79,7 +79,7 @@ def append_to_csv(json_response, fileName):
 bearer_token = TOKEN
 headers = create_headers(bearer_token)
 keyword = "(@FashionNova -is:retweet) lang:en"
-start_list =    ['2022-03-23T00:00:00.000Z']
+start_list =    ['2021-09-01T00:00:00.000Z']
 
 end_list =      ['2022-03-25T23:00:00.000Z']
 max_results = 100
@@ -122,7 +122,7 @@ def search_tweets():
     total_tweets = 0
 
     # Create file
-    csvFile = open("data.csv", "a", newline="", encoding='utf-8')
+    csvFile = open("fashionnova_sept1_2021_to_mar25_2022.csv", "a", newline="", encoding='utf-8')
     csvWriter = csv.writer(csvFile)
 
     #Create headers for the data you want to save, in this example, we only want save these columns in our dataset
@@ -150,7 +150,7 @@ def search_tweets():
                 print("Next Token: ", next_token)
                 if result_count is not None and result_count > 0 and next_token is not None:
                     print("Start Date: ", start_list[i])
-                    append_to_csv(json_response, "data.csv")
+                    append_to_csv(json_response, "fashionnova_sept1_2021_to_mar25_2022.csv")
                     count += result_count
                     total_tweets += result_count
                     print("Total # of Tweets added: ", total_tweets)
@@ -161,7 +161,7 @@ def search_tweets():
                 if result_count is not None and result_count > 0:
                     print("-------------------")
                     print("Start Date: ", start_list[i])
-                    append_to_csv(json_response, "data.csv")
+                    append_to_csv(json_response, "fashionnova_sept1_2021_to_mar25_2022.csv")
                     count += result_count
                     total_tweets += result_count
                     print("Total # of Tweets added: ", total_tweets)
