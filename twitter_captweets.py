@@ -1,12 +1,10 @@
-import csv
+import csv, time, dateutil, requests, pandas as pd
 from config import TOKEN
-import time, dateutil 
 from dateutil import parser
-import requests
 
 counts_url = "https://api.twitter.com/2/tweets/counts/all"
 
-start_time = '2022-01-01T00:00:00.000Z'
+start_time = '2021-09-01T00:00:00.000Z'
 end_time = '2022-03-25T23:00:00.000Z'
 counts_query_params = {'query': '(@FashionNova -is:retweet) lang:en', 'start_time': start_time, 
                 'end_time': end_time, 'granularity': 'day'}
@@ -25,10 +23,7 @@ def create_url(keyword, start_date, end_date, max_results = 10):
                     'start_time': start_date,
                     'end_time': end_date,
                     'max_results': max_results,
-                    'expansions': 'author_id,in_reply_to_user_id,geo.place_id',
-                    'tweet.fields': 'id,text,author_id,in_reply_to_user_id,geo,conversation_id,created_at,lang,public_metrics,referenced_tweets,reply_settings,source',
-                    'user.fields': 'id,name,username,created_at,description,public_metrics,verified',
-                    'place.fields': 'full_name,id,country,country_code,geo,name,place_type',
+                    'tweet.fields': 'id,text,author_id,created_at',
                     'next_token': {}}
     return (search_url, query_params)
 
@@ -49,6 +44,7 @@ def append_to_csv(json_response, fileName):
     csvFile = open(fileName, "a", newline="", encoding='utf-8')
     csvWriter = csv.writer(csvFile)
 
+
     #Loop through each tweet
     for tweet in json_response['data']:
         
@@ -61,32 +57,14 @@ def append_to_csv(json_response, fileName):
         # 2. Time created
         created_at = dateutil.parser.parse(tweet['created_at'])
 
-        # 3. Geolocation
-        if ('geo' in tweet):   
-            geo = tweet['geo']['place_id']
-        else:
-            geo = " "
-
         # 4. Tweet ID
         tweet_id = tweet['id']
-
-        # 5. Language
-        lang = tweet['lang']
-
-        # 6. Tweet metrics
-        retweet_count = tweet['public_metrics']['retweet_count']
-        reply_count = tweet['public_metrics']['reply_count']
-        like_count = tweet['public_metrics']['like_count']
-        quote_count = tweet['public_metrics']['quote_count']
-
-        # 7. source
-        source = tweet['source']
-
         # 8. Tweet text
         text = tweet['text']
+
         
         # Assemble all data in a list
-        res = [author_id, created_at, geo, tweet_id, lang, like_count, quote_count, reply_count, retweet_count, source, text]
+        res = [tweet_id,  created_at, text, author_id]
         
         # Append the result to the CSV file
         csvWriter.writerow(res)
@@ -101,10 +79,10 @@ def append_to_csv(json_response, fileName):
 bearer_token = TOKEN
 headers = create_headers(bearer_token)
 keyword = "(@FashionNova -is:retweet) lang:en"
-start_list =    ['2022-01-01T00:00:00.000Z']
+start_list =    ['2022-03-23T00:00:00.000Z']
 
-end_list =      ['2022-01-31T00:00:00.000Z']
-max_results = 20
+end_list =      ['2022-03-25T23:00:00.000Z']
+max_results = 100
 
 def count_tweets():
     total_count = 0
@@ -140,7 +118,7 @@ def count_tweets():
 
 
 def search_tweets():
-    #Total number of tweets we collected from the loop
+    # #Total number of tweets we collected from the loop
     total_tweets = 0
 
     # Create file
@@ -148,22 +126,18 @@ def search_tweets():
     csvWriter = csv.writer(csvFile)
 
     #Create headers for the data you want to save, in this example, we only want save these columns in our dataset
-    csvWriter.writerow(['author id', 'created_at', 'geo', 'id','lang', 'like_count', 'quote_count', 'reply_count','retweet_count','source','tweet'])
+    csvWriter.writerow(['tweet_id', 'created_at', 'text','author_id'])
     csvFile.close()
 
     for i in range(0,len(start_list)):
 
         # Inputs
         count = 0 # Counting tweets per time period
-        max_count = 100 # Max tweets per time period
         flag = True
         next_token = None
         
         # Check if flag is true
         while flag:
-            # Check if max_count reached
-            if count >= max_count:
-                break
             print("-------------------")
             print("Token: ", next_token)
             url = create_url(keyword, start_list[i],end_list[i], max_results)
@@ -200,4 +174,4 @@ def search_tweets():
             time.sleep(5)
     print("Total number of results: ", total_tweets)
 
-count_tweets()
+search_tweets()
