@@ -51,18 +51,14 @@ def append_to_csv(json_response, fileName):
         # We will create a variable for each since some of the keys might not exist for some tweets
         # So we will account for that
 
-        # 1. Author ID
         author_id = tweet['author_id']
 
-        # 2. Time created
         created_at = dateutil.parser.parse(tweet['created_at'])
 
-        # 4. Tweet ID
         tweet_id = tweet['id']
-        # 8. Tweet text
+
         text = tweet['text']
 
-        
         # Assemble all data in a list
         res = [tweet_id,  created_at, text, author_id]
         
