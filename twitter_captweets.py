@@ -4,8 +4,8 @@ from dateutil import parser
 
 counts_url = "https://api.twitter.com/2/tweets/counts/all"
 
-start_time = '2021-09-01T00:00:00.000Z'
-end_time = '2022-03-25T23:00:00.000Z'
+start_time = '2022-03-26T00:00:00.000Z'
+end_time = '2022-03-31T23:00:00.000Z'
 counts_query_params = {'query': '(@FashionNova -is:retweet) lang:en', 'start_time': start_time, 
                 'end_time': end_time, 'granularity': 'day'}
 
@@ -75,9 +75,9 @@ def append_to_csv(json_response, fileName):
 bearer_token = TOKEN
 headers = create_headers(bearer_token)
 keyword = "(@FashionNova -is:retweet) lang:en"
-start_list =    ['2021-09-01T00:00:00.000Z']
+start_list =    ['2021-01-01T00:00:00.000Z']
 
-end_list =      ['2022-03-25T23:00:00.000Z']
+end_list =      ['2021-08-31T20:00:00.000Z']
 max_results = 100
 
 def count_tweets():
@@ -118,7 +118,7 @@ def search_tweets():
     total_tweets = 0
 
     # Create file
-    csvFile = open("fashionnova_sept1_2021_to_mar25_2022.csv", "a", newline="", encoding='utf-8')
+    csvFile = open("fashionnova_jan1_2021_to_sept31_2021.csv", "a", newline="", encoding='utf-8')
     csvWriter = csv.writer(csvFile)
 
     #Create headers for the data you want to save, in this example, we only want save these columns in our dataset
@@ -146,7 +146,9 @@ def search_tweets():
                 print("Next Token: ", next_token)
                 if result_count is not None and result_count > 0 and next_token is not None:
                     print("Start Date: ", start_list[i])
-                    append_to_csv(json_response, "fashionnova_sept1_2021_to_mar25_2022.csv")
+                    print("Search from " + json_response['data'][0]['created_at'] + " to " 
+                    + json_response['data'][len(json_response['data']) - 1]['created_at'])
+                    append_to_csv(json_response, "fashionnova_jan1_2021_to_sept31_2021.csv")
                     count += result_count
                     total_tweets += result_count
                     print("Total # of Tweets added: ", total_tweets)
@@ -157,7 +159,9 @@ def search_tweets():
                 if result_count is not None and result_count > 0:
                     print("-------------------")
                     print("Start Date: ", start_list[i])
-                    append_to_csv(json_response, "fashionnova_sept1_2021_to_mar25_2022.csv")
+                    print("Search from " + json_response['data'][0]['created_at'] + " to " 
+                    + json_response['data'][len(json_response['data']) - 1]['created_at'])
+                    append_to_csv(json_response, "fashionnova_jan1_2021_to_sept31_2021.csv")
                     count += result_count
                     total_tweets += result_count
                     print("Total # of Tweets added: ", total_tweets)
