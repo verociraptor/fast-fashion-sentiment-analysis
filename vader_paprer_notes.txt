@@ -1,0 +1,37 @@
+VADER Paper
+
+Valence Aware Dictionary for sEntiment Reasoning
+- considered to be effective yet simple and straightforward to use. doesnt require much computational power yet does not sacrifice too much accuracy when doing so
+- outperforms "individual human raters"
+
+difficulties of social media sentiment analysis:
+	- sheer amount of text and volume of generated text coming from users every single day
+	- hard to contextualize text that can be too short or be abbreviated or have certain slangs that isnt totally obvious to a computer but obvious to humans
+
+Linguistic Inquiry and Word Count (LIWC) is an often used lexicon for fast and accurate sentiment analysis
+	been validated and typically prefered by scientists/professionals in sciency fields
+	- is extendable, easily understood
+
+Vader created using:
+	- "valence-based, human curated" lexicon
+	- curated list inspired by other sentiment word-banks, western-style emoticons or emojis that help depict sentiment, acronyms or abbreviations (WTF), commonly-used slang in everyday spoken language
+	- this list was then assessed based on its applicability to determine sentiment expressions. the authors used the wisdom-of-the-crowd approach to get the sentiment valence for each of the aforementioned features
+		- their "gold-standard" list of features and their associated valence is available on their website
+	- they extensively workd on and curated and incentivized their human raters to do the best job possible to get the most accurate results
+	- they used "data-driven inductive coding technique" thats similar to Grounded theory (find out what this is) to idnetify heuristics to use when analyzing sentiment in text. this will help to identify certain qualities of text that can change the perceived sentiment of it. helps to isolate certain cues that can convey changes in the sentiment strength. this includes, punctuation, caps, degree modifiers (very), contrastive conjuctions (but), and tri-grams that can flip the sentiment of the text ("isnt all that great")
+
+vader was tested versus:
+	- compared to seven other established lexicons that include LIWC, ANEW, Sentiwordnet, senticnet, word sense disambiguation using wordnet, hu-liu04 opinion lexion.
+	- also compared to machine learning algoirhtms such as the svm models.
+
+results:
+	- shown that vaders persoms as well or better across domains than ml approaches in same domain they're trained.
+
+vader benefits:
+	- bigger and still simple to understand and can be quickly applied without any learning curves
+	- more sensitive to social media text but can be generalized to other domains such as news articles
+	- no need for training data
+	- considers the intensity or strength of the sentiment. which is the valence 
+	- open source, not a black box
+	- computationally efficient without sacrificing accuracy
+	- not self contained bc its rules are general so does not need extensive training set since it can perform well in diverse domains. 
