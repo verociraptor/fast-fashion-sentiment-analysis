@@ -1,0 +1,21 @@
+METHODS
+=======
+Our project was broken down into 8 stages as seen in our given pipeline. Before gathering tweets, we divided the workload into three separate clothing brands for each of our members: Shein was analyzed by Michelle, Fashion Nova by me (Veronica), and H&M by Serafin. Our first step was getting research access to the Twitter API in order to gain tweets from a year ago then we gathered tweets for each brand from January 1, 2021 to March 31, 2022. We then cleaned the tweets which included removing symbols and tokenization. We processed the tweets through VADER that measured the sentiment for each tweet from a range of -1 to 1. We then plotted the positive and negative sentiment over time based on our date range, and identified any significant peaks. Once we identified those, we searched articles online that fell on that day containing a peak. Finally, to confirm any correlation, we generated a wordcloud to analyze the tweets further. If we were able to identify factors that contributed to these peaks, we considered our analysis successful. 
+
+
+FASHION NOVA ANALYSIS 1
+=========================
+For fashion nova, three dates were identified to have both positive (the green) and negative peaks (the red). These are February 8, 2021; October 4, 2021; and March 28, 2022. 
+
+
+FEB8 2021 2
+============
+For the February 8 peak, one major event was found which is the Superbowl. To investigate further in what was being talked about, two word clouds were generated. We can see from both that they centered around some sort of giveaway or winning something. This is most likely related to the NovaBowl sweepstakes the brand advertised on this same day. Although the positive word clooud focused on a good response for this giveaway, some users were giving out negative responses that seem related to Fashion Nova's customer service as seen from the words "customer", "service" and "disappointment". 
+
+LAST FASHION NOVA ANALYSIS
+==========================
+For the last two dates, two majors events occurred. The first was the Meta outage that lasted almost a day and the second was the Oscars where Will Smith slapped Chris rock. We can see from the two tweets that Fashion Nova had sent out marketing texts on the respective day that alluded to these two events. The brand flaunted being the only thing working when instagram was down and then "slapped" a sale on the same night the Oscars happened. Both the positive and negative word clouds that were generated centered around these texts whether for good or for bad. Shown in this slide are the positive word clouds where users were tweeting about the text and the marketing team seemingly working hard.
+
+CONCLUSION
+==========
+Based on our analysis, each brand generated sentiment but for different reasons. Fashion Nova utilized trending events as a marketing technique that successfully gained attention. Shein experienced customer dissatisfaction by stealing artist's designs. And H&M generally gained good feedback by advertising new products with influencers. 
